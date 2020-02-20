@@ -1,0 +1,68 @@
+<%- include('../partials/header') %>
+
+<section id="flight-detail" action="/<%= flight._id%>/show" method="GET">
+  <div>Airline:</div>
+  <div><%= flight.airline %></div>
+  <div>Flight Number:</div>
+  <div><%= flight.flightNumber %></div>
+  <div>Departure:</div>
+  <div><%= flight.departure %></div>
+  <div>Airport:</div>
+  <div><%= flight.airport %></div>
+  
+  <div><%= flight.arrival %></div>
+  <ul>
+    <%- flight.ticket.map(d => `<option value="${d.price}">${d.seat}</option>`).join('') %>
+  </ul>
+</section>
+<br />
+<br />
+<form id="add-per-to-ticket" action="/tickets/<%= flight._id%>/new" method="POST">
+  <button type="submit">Add to Ticket</button>
+</form>
+
+<%- tickets.map(d => 
+  `
+  <form id="delete-ticket" action="/tickets/${d._id}/delete" method="DELETE">
+    <p value="${d.price}">${d.seatNumber}</p>
+    <button type="submit">Delete Ticket</button>
+  </form>
+`).join('') %>
+
+<br />
+<br />
+<h2>Destinations</h2>
+<form id="add-destination-form" action="/destinations/<%= flight._id%>/destinations" method="POST">
+  <% flight.destinations.forEach( (d, index) => { %>
+    <tbody>
+        <div><%= index + 1%></div>
+        <tr>
+          <td><div>Airport:</div></td>
+          <td><%= d.airport %></td>
+          <td><div>Arrival:</div></td>
+          <td><%= d.arrival %></td>
+        </tr>
+      </tbody>
+    <% }); %>
+
+  <br><br>
+  <label>Arrival: <input type="datetime-local" name="arrival" /> </label>
+  <select name="airport">
+    <option value="AUS">AUS</option>
+    <option value="DAL">DAL</option>
+    <option value="LAX">LAX</option>
+    <option value="SEA">SEA</option>
+  </select>
+  <input type="submit" value="Add Destination" />
+</form>
+
+
+
+
+<%- include('../partials/footer') %>
+
+  
+
+<select name="seatId">
+  <%- tickets.map(d => `<option value="${d.price}">${d.seatNumber}</option>`).join('') %>
+</select>

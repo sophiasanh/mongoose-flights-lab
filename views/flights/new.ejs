@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/stylesheets/style.css" />
+<form id="new-flights-id" action="/flights" method="POST">
+
+<br />
+<br />
+<label>Flight Number (A1-F99):<input type="number" name="flightNumber" min="10" max="9999" /></label>
+<br />
+<br />
+<label>Airport</label>
+<select name="airport">
+  <option value="AUS">Austin</option>
+  <option value="DAL">Dallas</option>
+  <option value="LAX">Los Angeles</option>
+  <option value="SEA">Seattle</option>
+</select>
+<br />
+<br />
+<label>Airline: </label>  
+<select name="airline">
+  <option value="American">American</option>
+  <option value="Southwest">Southwest</option>
+  <option value="United">United</option>
+</select>
+</label>
+<br />
+<br />
+<label>Departure Date & Time: <input type="datetime-local" id="departure" name="departures" value="2021-01-10T11:44"></label>
+<br />
+<br />
+<label>Arrival Date & Time: <input type="datetime-local" id="arrival" name="arrivals" value="2021-01-10T11:44">
+</label>
+<br />
+<br />
+<button type="submit" class="button">Add New Flight</button>
+</form>
+<br />
+<br />
+<a href="/tickets/new" <%- title === 'Add Ticket' ? 'class="active"' : '' %>>ADD TICKET</a>
+<%- include('../partials/footer') %>

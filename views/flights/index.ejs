@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<!-- <form action="/flights" method="POST"></form> -->
+<table id="flights-list">
+  <thead>
+    <tr>
+      <form action="/flights" method="GET"></form>
+      <!-- <th>ALL FLIGHTS</th> -->
+      <!-- <th><div>Flight Number:</div></th> -->
+    </tr>
+  </thead>
+  <tbody>
+      <% flights.forEach(function(f, index) { %>
+        <tr class="<%= (f.departure < new Date()) ? 'expired' : '' ; %>">
+          <th><div>Airline:</div></th>
+          <td><%= f.airline %></td>
+          <th><div>Flight Number:</div></th>
+          <td><%= f.flightNumber %></td>
+          <th><div>Departure:</div></th>
+          <td><%= f.departure %></td>
+          <th><div>Airport:</div></th>
+          <td><%= f.airport %></td>
+          <!-- <th><div>Arrival:</div></th>
+          </td><% f.arrival %></td> -->
+          <td><a href="/flights/<%=f._id%>/show">DETAILS</a></td>
+        </tr>
+
+      <% }); %>
+  </tbody>
+</table>
+  
+<%- include('../partials/footer') %>
